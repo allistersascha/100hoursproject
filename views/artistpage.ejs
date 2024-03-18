@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+  	<meta charset="utf-8">
+  	<meta name="description" content="Network for multimedia art and production collaboration">
+  	<meta name="keywords" content="art, music, artist, producer, musician, poet, writer">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>Palchemy Music Collective</title>
+
+		
+		 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Montserrat:wght@300&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="/public/css/style.css">
+<script src="https://kit.fontawesome.com/06d0c62c4a.js" crossorigin="anonymous"></script>
+	</head>
+<body>
+  <header>
+    <nav class="itsnav" id="daNav">
+      <a href="#home" class="active">Palchemy</a>
+      <section id="navLinks">
+
+        <a href="./100hours/login.html">Login</a>
+        <a href="./100hours/signup.html">Signup</a>
+        <a href="./100hours/search.html">Browse</a>
+        <a href="./100hours/about.html">About</a>
+        <a href="./100hours/faq.html">FAQ</a>
+        <a href="./100hours/protocols.html">Community Standards</a>
+        <a href="./100hours/contact.html">Contact</a>
+        <li><a href="./100hours/support.html">Support</a>
+      </section>
+        <a href="javascript:void(0);" class="icon" onclick="toggleNavLinks()">
+            <i class="fa-solid fa-bars"></i>
+        </a>
+        </nav>
+    </header>
+    <h1 class="artistName" data-id="<%= el._id %>"><%= el.artistName %></h1>
+   
+<section id="artistBioSection">
+       
+        <p class="artistBio" data-id="<%= el._id %>">I am lorem ipsummoning an artist bio so I can do the CSS make it look purdy when it hit Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+  <img src="<% el.artistImg %>" id="artistImg" data-id="<%= el._id %>" alt="artist image here">
+    </section>
+      <section id="songsSection">
+        <ol>
+        <% Songs.forEach( el => { %> 
+        <% if (el.songName) { %> 
+          <li class="songItem" data-id="<%= el._id %>">
+            <span class="songName"><%= el.songName %> </span>
+   	<section id="audioContainer">
+    <audio src="<%= el.songFile %>" data-id="<%= el._id %>" type="audio" preload="metadata"></audio>
+    <button id="playIcon"><i class="fa-solid fa-play"></i></button>
+    <span id="currentTime" class="time">0:00</span>
+    <input type="range" id="seekSlider" max="100" value="0">
+    <span id="duration" class="time">0:00</span>
+    <button id="muteIcon"><i class="fa-solid fa-volume-xmark"></i></button>
+    <input type="range" id="volumeSlider" max="100" value="50">
+    <output id="volumeOutput">100</output>
+    
+    
+  </section>
+
+
+    <footer>
+        <p>Fine print copyright allister 2024 etc</p>
+    </footer>
+    <script type="text/javascript" src="./public/js/main.js"></script>
+</body>
+</html>
