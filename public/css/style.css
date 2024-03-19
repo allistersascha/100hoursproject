@@ -32,3 +32,52 @@ html{
 
     }
 }
+
+nav{
+    overflow: hidden;
+    background-color: #000;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    color: #e2c7f2;
+    width: 20%;
+}
+
+nav #navLinks {
+    display: none;
+
+}
+
+nav #navLinks a:hover{
+    color: #e2c7f2;
+}
+
+nav a {
+    color: #eda634;
+    padding: 1.4rem 1.6rem;
+    text-decoration: none;
+    font-size: 1.6rem;
+    display: block;
+   
+}
+
+nav a.icon {
+    background: black;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+nav a:hover {
+    background-color: black;
+    color: #eda634;
+   
+}
+
+nav .active {
+    background-color: #1d0524;
+    color: #e2c7f2;
+    padding-left: 6rem;
+   
+}
+
