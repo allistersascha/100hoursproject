@@ -2,7 +2,7 @@
      box-sizing: border-box;
 }
 
-/* Clear fix hack */
+
 .clearfix:after {
      content: ".";
      display: block;
@@ -214,4 +214,55 @@ label {
   color: #eda634;
   font-family: 'Montserrat', san-serif;
   font-size: 1.6rem;
+}
+
+
+#artistBioSection {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #eda634;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  margin: 1.2rem;
+}
+
+.artistBio {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 40%;
+}
+#artistImg {
+  display: flex;
+  width: 200px;
+  height: 200px;
+}
+
+#songsSection {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #eda634;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  margin: 1.2rem;
+}
+
+.songName span {
+  margin: 1.2rem;
+}
+
+button {
+    padding: 0;
+    border: 0;
+    /* margin-top: 3px;
+    margin-bottom: 3px; */
+    background: #1d0524;
+    color: #eda634;
+    cursor: pointer;
+    outline: none;
+    width: 40px;
+    height: 40px;
+  
 }
