@@ -104,3 +104,20 @@ h3{
   font-size: 2.6rem;
   margin-bottom: 6rem;
 }
+
+img {
+  width: 20%;
+  height: 20%;
+  border: 1px solid #eda634;
+}
+ .vertpics img {
+    display: flex;
+    flex-direction: column;
+  }
+ .vertpics {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 5rem;
+  margin-bottom: 6rem;
+}
