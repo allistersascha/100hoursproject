@@ -121,3 +121,41 @@ img {
   margin-top: 5rem;
   margin-bottom: 6rem;
 }
+
+.secondsec {
+  color: #e2c7f2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.copy {
+  display: flex;
+  flex-flow: column-wrap;
+  justify-content: flex-start;
+  width: 40%;
+  margin: 0.5rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  border: 1px solid #eda634;
+  
+}
+
+.hori img {
+  width: 80%;
+  height: 80%;
+  border: 2px solid #e2c7f2;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.thirdsec{
+  color: #e2c7f2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 3rem;
+}
