@@ -159,3 +159,20 @@ img {
   justify-content: space-evenly;
   margin-top: 3rem;
 }
+
+.welcome p {
+  display: flex;
+  justify-content: center;
+  color: #e2c7f2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+}
+
+.welcome a{
+  color: #e2c7f2;
+  text-decoration: none;
+}
+
+.welcome a:hover{
+  color: #eda634;
+}
