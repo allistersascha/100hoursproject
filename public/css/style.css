@@ -176,3 +176,13 @@ img {
 .welcome a:hover{
   color: #eda634;
 }
+
+footer {
+    display: flex;
+    justify-content: center;
+    color: #e2c7f2;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
