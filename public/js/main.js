@@ -171,3 +171,7 @@ const showRangeProgress = (rangeInput) => {
     if(rangeInput === seekSlider) audioPlayerCont.style.setProperty('--seek-before-width', rangeInput.value / rangeInput.max * 100 + '%');
     else audioPlayerCont.style.setProperty('--volume-before-width', rangeInput.value / rangeInput.max * 100 + '%');
 }
+
+seekSlider.addEventListener('input', (e) => {
+    showRangeProgress(e.target);
+});
