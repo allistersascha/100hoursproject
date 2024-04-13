@@ -175,3 +175,7 @@ const showRangeProgress = (rangeInput) => {
 seekSlider.addEventListener('input', (e) => {
     showRangeProgress(e.target);
 });
+
+volumeSlider.addEventListener('input', (e) => {
+    showRangeProgress(e.target);
+});
