@@ -179,3 +179,10 @@ seekSlider.addEventListener('input', (e) => {
 volumeSlider.addEventListener('input', (e) => {
     showRangeProgress(e.target);
 });
+
+const calculateTime = (secs) => {
+    const minutes = Math.floor(secs / 60);
+    const seconds = Math.floor(secs % 60);
+    const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    return `${minutes}:${returnedSeconds}`;
+}
