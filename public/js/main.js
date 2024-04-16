@@ -186,3 +186,7 @@ const calculateTime = (secs) => {
     const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
     return `${minutes}:${returnedSeconds}`;
 }
+
+const displayDuration = () => {
+    durationCont.textContent = calculateTime(audio.duration);
+}
