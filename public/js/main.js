@@ -190,3 +190,7 @@ const calculateTime = (secs) => {
 const displayDuration = () => {
     durationCont.textContent = calculateTime(audio.duration);
 }
+
+const setSliderMax = () => {
+    seekSlider.max = Math.floor(audio.duration);
+}
