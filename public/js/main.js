@@ -200,3 +200,10 @@ const displayBufferedAmount = () => {
     const bufferedAmount = Math.floor(audio.buffered.end(audio.buffered.length - 1));
     audioPlayerCont.style.setProperty('--buffered-width', `${(bufferedAmount / seekSlider.max) * 100}%`);
 }
+
+const whilePlaying = () => {
+    seekSlider.value = Math.floor(audio.currentTime);
+    currentTimeCont.textContent = calculateTime(seekSlider.value);
+    audioPlayerCont.style.setProperty('--seek-before-width', `${seekSlider.value / seekSlider.max * 100}%`);
+    
+}
