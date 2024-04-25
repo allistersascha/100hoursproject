@@ -207,3 +207,15 @@ const whilePlaying = () => {
     audioPlayerCont.style.setProperty('--seek-before-width', `${seekSlider.value / seekSlider.max * 100}%`);
     
 }
+
+if (audio.readyState > 0) {
+    displayDuration();
+    setSliderMax();
+    displayBufferedAmount();
+} else {
+    audio.addEventListener('loadedmetadata', () => {
+        displayDuration();
+        setSliderMax();
+        displayBufferedAmount();
+    });
+}
