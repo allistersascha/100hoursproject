@@ -219,3 +219,10 @@ if (audio.readyState > 0) {
         displayBufferedAmount();
     });
 }
+
+volumeSlider.addEventListener('input', (e) => {
+    const value = e.target.value;
+
+    outputCont.textContent = value;
+    audio.volume = value / 100;
+});
