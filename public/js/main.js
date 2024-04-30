@@ -226,3 +226,7 @@ volumeSlider.addEventListener('input', (e) => {
     outputCont.textContent = value;
     audio.volume = value / 100;
 });
+
+navigator.mediaSession.setActionHandler('seekbackward', (details) => {
+        audio.currentTime = audio.currentTime - (details.seekOffset || 10);
+    });
