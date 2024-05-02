@@ -230,3 +230,7 @@ volumeSlider.addEventListener('input', (e) => {
 navigator.mediaSession.setActionHandler('seekbackward', (details) => {
         audio.currentTime = audio.currentTime - (details.seekOffset || 10);
     });
+
+navigator.mediaSession.setActionHandler('seekforward', (details) => {
+        audio.currentTime = audio.currentTime + (details.seekOffset || 10);
+    });
