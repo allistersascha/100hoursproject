@@ -234,3 +234,10 @@ navigator.mediaSession.setActionHandler('seekbackward', (details) => {
 navigator.mediaSession.setActionHandler('seekforward', (details) => {
         audio.currentTime = audio.currentTime + (details.seekOffset || 10);
     });
+navigator.mediaSession.setActionHandler('seekto', (details) => {
+        if (details.fastSeek && 'fastSeek' in audio) {
+          audio.fastSeek(details.seekTime);
+          return;
+        }
+        audio.currentTime = details.seekTime;
+    });
