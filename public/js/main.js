@@ -241,3 +241,7 @@ navigator.mediaSession.setActionHandler('seekto', (details) => {
         }
         audio.currentTime = details.seekTime;
     });
+navigator.mediaSession.setActionHandler('stop', () => {
+        audio.currentTime = 0;
+        seekSlider.value = 0;
+    });
