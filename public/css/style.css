@@ -266,3 +266,17 @@ button {
     height: 40px;
   
 }
+
+#audioContainer {
+    display: flex;
+  
+    --seek-before-width: 0%;
+    --volume-before-width: 100%;
+    --buffered-width: 0%;
+    margin: 10px 2.5% auto 2.5%;
+    width: 95%;
+    max-width: 75%;
+    background: #eda634;
+    color: #1d0524;
+    
+}
