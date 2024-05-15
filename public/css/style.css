@@ -280,3 +280,13 @@ button {
     color: #1d0524;
     
 }
+
+#playIcon {
+    margin: 0.6rem;
+    width: 18%;
+}
+
+#muteIcon {
+  margin: 0.6rem;
+  width: 18%;
+}
