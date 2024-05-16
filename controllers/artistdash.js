@@ -96,3 +96,28 @@ addSong: async (req, res) => {
     }
   }
 }
+
+ /* addAlbum: async (req, res) => {
+    try {
+      await Album.create({
+        Album: req.body.albumName, 
+        albumCover: req.body.albumCover ? true: false,
+        userId: req.user.id,
+      });
+      console.log("Album has been added!");
+      res.redirect("/artistdash");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  deleteAlbum: async (req, res) => {
+    console.log(req.body.albumIdFromJSFile);
+    try {
+      await Album.findOneAndDelete({ _id: req.body.albumIdFromJSFile });
+      console.log("Deleted Album");
+      res.json("Deleted It");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+*/
