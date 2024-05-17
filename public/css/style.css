@@ -290,3 +290,14 @@ button {
   margin: 0.6rem;
   width: 18%;
 }
+
+#volumeSlider {
+    margin: 10px 2.5%;
+    width: 58%;
+}
+
+
+#seekSlider {
+    margin: 10px 2.5%;
+    width: 58%;
+}
