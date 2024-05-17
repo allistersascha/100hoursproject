@@ -71,5 +71,28 @@ changeBio: async (req, res) => {
     } catch (err) {
       console.log(err);
     }
+  },
+addSong: async (req, res) => {
+    try {
+      await Song.create({
+        songName: req.body.songName, 
+        songFile: req.body.songFile,
+        userId: req.user.id,
+      });
+      console.log("Song has been added!");
+      res.redirect("/artistdash");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  deleteSong: async (req, res) => {
+    console.log(req.body.songIdFromJSFile);
+    try {
+      await Song.findOneAndDelete({ _id: req.body.songIdFromJSFile });
+      console.log("Deleted Song");
+      res.json("Deleted It");
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
