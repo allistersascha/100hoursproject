@@ -35,5 +35,41 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
+  },
+changeBio: async (req, res) => {
+    try {
+      await artistBio.update({
+        Artist: req.body.artistBio, 
+        userId: req.user.id,
+      });
+      console.log("Artist bio changed!");
+      res.redirect("/artistdash");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+ addArtistImg: async (req, res) => {
+    try {
+      await Artist.create({
+        artistImg: req.body.artistImg,
+        userId: req.user.id,
+      });
+      console.log("Artist image has been added!");
+      res.redirect("/artistdash");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+ changeArtistImg: async (req, res) => {
+    try {
+      await Artist.update({
+        artistImg: req.body.artistImg,
+        userId: req.user.id,
+      });
+      console.log("Artist image has been updated!");
+      res.redirect("/artistdash");
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
