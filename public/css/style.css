@@ -301,3 +301,9 @@ button {
     margin: 10px 2.5%;
     width: 58%;
 }
+
+#audioContainer span, output{
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
