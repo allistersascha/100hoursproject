@@ -9,8 +9,13 @@ const ArtistSchema = new mongoose.Schema({
     type: String,
   },
   artistImg: {
-    type: Image,
-  },
+    img:
+        {
+        data: Buffer,
+        contentType: String
+        }
+    },
+  
   userId: {
     type: String,
     required: true
