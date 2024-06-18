@@ -1,0 +1,29 @@
+{
+  "name": "100hoursproject",
+  "version": "1.0.0",
+  "description": "This is my 100 hours project called Palchemy, where musicians and artists can get together to create together!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allistersascha/100hoursproject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/allistersascha/100hoursproject/issues"
+  },
+  "homepage": "https://github.com/allistersascha/100hoursproject#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "flash": "^1.1.0",
+    "mongodb": "^6.7.0",
+    "mongoose": "^8.4.3",
+    "morgan": "^1.10.0",
+    "passport": "^0.7.0",
+    "session": "^0.1.0"
+  }
+}
