@@ -157,91 +157,112 @@ async function addSong(){
     }
 }
 
-const playIconCont = document.getElementById("playIcon");
-const muteIconCont = document.getElementById("muteIcon");
-const audioPlayerCont = document.getElementById("audioContainer");
-const seekSlider = document.getElementById("seekSlider");
-const volumeSlider = document.getElementById("volumeSlider")
-const audio = document.querySelector('audio');
-const durationCont = document.getElementById('duration');
-const currentTimeCont = document.getElementById('currentTime');
-const outputCont = document.getElementById('volumeOutput');
-
-const showRangeProgress = (rangeInput) => {
-    if(rangeInput === seekSlider) audioPlayerCont.style.setProperty('--seek-before-width', rangeInput.value / rangeInput.max * 100 + '%');
-    else audioPlayerCont.style.setProperty('--volume-before-width', rangeInput.value / rangeInput.max * 100 + '%');
+function toggleNavLinks(){
+    let x = document.getElementById("navLinks");
+    if (x.style.display === "block"){
+        x.style.display = "none";
+    }else{
+        x.style.display = "block";
+    }
 }
+// load sound via <audio tag
+const audioElement = document.querySelector("audio");
+const audioCtx = new AudioContext();
+const track = audioCtx.createMediaElementSource(audioElement);
 
-seekSlider.addEventListener('input', (e) => {
-    showRangeProgress(e.target);
-});
+// Player controls and attributes
+const playButton = document.querySelector(".player-play-btn");
+const playIcon = playButton.querySelector(".player-icon-play");
+const pauseIcon = playButton.querySelector(".player-icon-pause");
+const progress = document.querySelector(".player-progress");
+const progressFilled = document.querySelector(".player-progress-filled");
+const playerCurrentTime = document.querySelector(".player-time-current");
+const playerDuration = document.querySelector(".player-time-duration");
+const volumeControl = document.querySelector(".player-volume")
 
-volumeSlider.addEventListener('input', (e) => {
-    showRangeProgress(e.target);
-});
+window.addEventListener("load", () => {
+  // Set times after page load
+  setTimes();
 
-const calculateTime = (secs) => {
-    const minutes = Math.floor(secs / 60);
-    const seconds = Math.floor(secs % 60);
-    const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    return `${minutes}:${returnedSeconds}`;
-}
+  // Update progress bar and time values as audio plays
+  audioElement.addEventListener("timeupdate", () => {
+    progressUpdate();
+    setTimes();
+  });
 
-const displayDuration = () => {
-    durationCont.textContent = calculateTime(audio.duration);
-}
+  // Play button toggle
+  playButton.addEventListener("click", () => {
+    // check if context is in suspended state (autoplay policy)
+    // By default browsers won't allow you to autoplay audio.
+    // You can overide by finding the AudioContext state and resuming it after a user interaction like a "click" event.
+    if (audioCtx.state === "suspended") {
+      audioCtx.resume();
+    }
 
-const setSliderMax = () => {
-    seekSlider.max = Math.floor(audio.duration);
-}
+    // Play or pause track depending on state
+    if (playButton.dataset.playing === "false") {
+      audioElement.play();
+
+      playButton.dataset.playing = "true";
+      playIcon.classList.add("hidden");
+      pauseIcon.classList.remove("hidden");
+    } else if (playButton.dataset.playing === "true") {
+      audioElement.pause();
+      playButton.dataset.playing = "false";
+      pauseIcon.classList.add("hidden");
+      playIcon.classList.remove("hidden");
+    }
+  });
+
+  // if the track ends reset the player
+  audioElement.addEventListener("ended", () => {
+    playButton.dataset.playing = "false";
+    pauseIcon.classList.add("hidden");
+    playIcon.classList.remove("hidden");
+    progressFilled.style.flexBasis = "0%";
+    audioElement.currentTime = 0;
+    audioElement.duration = audioElement.duration;
+  });
+
+  // Bridge the gap between gainNode and AudioContext so we can manipulate volume (gain)
+  const gainNode = audioCtx.createGain();
+  const volumeControl = document.querySelector(".player-volume");
+  volumeControl.addEventListener("change", () => {
+    gainNode.gain.value = volumeControl.value;
+  });
+
+  track.connect(gainNode).connect(audioCtx.destination);
+
+  // Display currentTime and duration properties in real time
+  function setTimes() {
+    playerCurrentTime.textContent = new Date(audioElement.currentTime * 1000)
+      .toISOString()
+      .substr(11, 8);
+    playerDuration.textContent = new Date(audioElement.duration * 1000)
+      .toISOString()
+      .substr(11, 8);
+  }
+
+  // Update player timeline progress visually
+  function progressUpdate() {
+    const percent = (audioElement.currentTime / audioElement.duration) * 100;
+    progressFilled.style.flexBasis = `${percent}%`;
+  }
+
+  // Scrub player timeline to skip forward and back on click for easier UX
+  let mousedown = false;
+
+  function scrub(event) {
+    const scrubTime =
+      (event.offsetX / progress.offsetWidth) * audioElement.duration;
+    audioElement.currentTime = scrubTime;
+  }
+
+  progress.addEventListener("click", scrub);
+  progress.addEventListener("mousemove", (e) => mousedown && scrub(e));
+  progress.addEventListener("mousedown", () => (mousedown = true));
+  progress.addEventListener("mouseup", () => (mousedown = false));
 
 
-const displayBufferedAmount = () => {
-    const bufferedAmount = Math.floor(audio.buffered.end(audio.buffered.length - 1));
-    audioPlayerCont.style.setProperty('--buffered-width', `${(bufferedAmount / seekSlider.max) * 100}%`);
-}
 
-const whilePlaying = () => {
-    seekSlider.value = Math.floor(audio.currentTime);
-    currentTimeCont.textContent = calculateTime(seekSlider.value);
-    audioPlayerCont.style.setProperty('--seek-before-width', `${seekSlider.value / seekSlider.max * 100}%`);
-    
-}
-
-if (audio.readyState > 0) {
-    displayDuration();
-    setSliderMax();
-    displayBufferedAmount();
-} else {
-    audio.addEventListener('loadedmetadata', () => {
-        displayDuration();
-        setSliderMax();
-        displayBufferedAmount();
-    });
-}
-
-volumeSlider.addEventListener('input', (e) => {
-    const value = e.target.value;
-
-    outputCont.textContent = value;
-    audio.volume = value / 100;
-});
-
-navigator.mediaSession.setActionHandler('seekbackward', (details) => {
-        audio.currentTime = audio.currentTime - (details.seekOffset || 10);
-    });
-
-navigator.mediaSession.setActionHandler('seekforward', (details) => {
-        audio.currentTime = audio.currentTime + (details.seekOffset || 10);
-    });
-navigator.mediaSession.setActionHandler('seekto', (details) => {
-        if (details.fastSeek && 'fastSeek' in audio) {
-          audio.fastSeek(details.seekTime);
-          return;
-        }
-        audio.currentTime = details.seekTime;
-    });
-navigator.mediaSession.setActionHandler('stop', () => {
-        audio.currentTime = 0;
-        seekSlider.value = 0;
-    });
+}, false)
