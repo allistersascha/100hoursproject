@@ -170,7 +170,6 @@ const audioElement = document.querySelector("audio");
 const audioCtx = new AudioContext();
 const track = audioCtx.createMediaElementSource(audioElement);
 
-// Player controls and attributes
 const playButton = document.querySelector(".player-play-btn");
 const playIcon = playButton.querySelector(".player-icon-play");
 const pauseIcon = playButton.querySelector(".player-icon-pause");
@@ -181,7 +180,7 @@ const playerDuration = document.querySelector(".player-time-duration");
 const volumeControl = document.querySelector(".player-volume")
 
 window.addEventListener("load", () => {
-  // Set times after page load
+
   setTimes();
 
   // Update progress bar and time values as audio plays
@@ -190,11 +189,8 @@ window.addEventListener("load", () => {
     setTimes();
   });
 
-  // Play button toggle
   playButton.addEventListener("click", () => {
-    // check if context is in suspended state (autoplay policy)
-    // By default browsers won't allow you to autoplay audio.
-    // You can overide by finding the AudioContext state and resuming it after a user interaction like a "click" event.
+
     if (audioCtx.state === "suspended") {
       audioCtx.resume();
     }
